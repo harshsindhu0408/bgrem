@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: bg-remover-backend
+    ports:
+      - "8002:8000"
+    restart: always
+    environment:
+      - PORT=8000
+
+  frontend:
+    build: 
+      context: ./frontend
+      args:
+        - VITE_API_URL=https://apibgrem.sindhustudio.com
+    container_name: bg-remover-frontend
+    ports:
+      - "5174:80"
+    restart: always
